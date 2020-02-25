@@ -1,0 +1,18 @@
+<Project>
+
+  <PropertyGroup>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>Daniel Crenna &amp; Contributors</Authors>
+    <Description>Capturing CLR and application-level metrics. So you know what's going on. An idiomatic port of Coda Hale's Metrics for Scala and the JVM.</Description>
+    <Copyright>Copyright © Daniel Crenna &amp; Contributors. All rights reserved.</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/danielcrenna/metrics/master/assets/logo.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/danielcrenna/metrics</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/danielcrenna/metrics</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>metrics</PackageTags>
+    <Version>2.0.1</Version>
+    <PackageReleaseNotes>Add ServerTiming reporter.</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>
