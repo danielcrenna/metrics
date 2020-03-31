@@ -7,12 +7,12 @@
     <Copyright>Copyright © Daniel Crenna &amp; Contributors. All rights reserved.</Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/danielcrenna/metrics/master/assets/logo.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/danielcrenna/metrics</PackageProjectUrl>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/danielcrenna/metrics</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>metrics</PackageTags>
-    <Version>2.0.1</Version>
-    <PackageReleaseNotes>Add ServerTiming reporter.</PackageReleaseNotes>
+    <Version>2.0.4</Version>
+    <PackageReleaseNotes>Switch to ActiveStorage interface for key value storage.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
