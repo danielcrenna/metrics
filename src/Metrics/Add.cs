@@ -1,4 +1,7 @@
 using System;
+using ActiveRoutes;
+using Metrics.Controllers;
+using Metrics.Features;
 using Metrics.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +23,7 @@ namespace Metrics
         }
 
         public static IServiceCollection AddMetrics(this IServiceCollection services, IConfiguration configuration,
-            Action<IMetricsBuilder> configure)
+            Action<MetricsBuilder> configure)
         {
             return AddMetrics(services, builder =>
             {
@@ -30,7 +33,7 @@ namespace Metrics
             });
         }
 
-        public static IServiceCollection AddMetrics(this IServiceCollection services, Action<IMetricsBuilder> configure)
+        public static IServiceCollection AddMetrics(this IServiceCollection services, Action<MetricsBuilder> configure)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
@@ -50,6 +53,24 @@ namespace Metrics
 
             configure(new MetricsBuilder(services, host, services.AddHealthChecks()));
             return services;
+        }
+
+        public static IServiceCollection AddMetricsApi(this IServiceCollection services, Action<MetricsOptions> configureAction = null)
+        {
+            services.AddActiveRouting(builder =>
+            {
+                builder.AddMetricsApi(configureAction);
+            });
+
+            return services;
+        }
+
+        private static void AddMetricsApi(this IMvcCoreBuilder mvcBuilder, Action<MetricsOptions> configureAction = null)
+        {
+            if (configureAction != null)
+                mvcBuilder.Services.Configure(configureAction);
+
+            mvcBuilder.AddActiveRoute<MetricsBuilder, MetricsController, MetricsFeature, MetricsOptions>();
         }
     }
 }

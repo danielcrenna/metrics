@@ -11,8 +11,8 @@
     <RepositoryUrl>https://github.com/danielcrenna/metrics</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>metrics</PackageTags>
-    <Version>2.0.4</Version>
-    <PackageReleaseNotes>Switch to ActiveStorage interface for key value storage.</PackageReleaseNotes>
+    <Version>2.0.5</Version>
+    <PackageReleaseNotes>Add Active API.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

@@ -1,10 +1,11 @@
 using System;
+using ActiveRoutes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace Metrics.Internal
 {
-    internal class MetricsBuilder : IMetricsBuilder
+    public class MetricsBuilder : IFeatureBuilder
     {
         private readonly IHealthChecksBuilder _builder;
         private readonly Lazy<MetricsHost> _host;
@@ -23,25 +24,25 @@ namespace Metrics.Internal
 
         public IServiceCollection Services { get; }
 
-        public IMetricsBuilder RegisterAsHealthCheck(Func<IMetricsHost, GaugeMetric<bool>> builderFunc,
+        public MetricsBuilder RegisterAsHealthCheck(Func<IMetricsHost, GaugeMetric<bool>> builderFunc,
             HealthStatus onCheckFailure = HealthStatus.Unhealthy)
         {
             return RegisterAsHealthCheck(builderFunc, m => m, onCheckFailure);
         }
 
-        public IMetricsBuilder RegisterAsHealthCheck<T>(Func<IMetricsHost, GaugeMetric<T>> builderFunc,
+        public MetricsBuilder RegisterAsHealthCheck<T>(Func<IMetricsHost, GaugeMetric<T>> builderFunc,
             Func<T, bool> checkFunc, HealthStatus onCheckFailure = HealthStatus.Unhealthy)
         {
             return RegisterAsHealthCheck(builderFunc, m => m.Value, checkFunc, onCheckFailure);
         }
 
-        public IMetricsBuilder RegisterAsHealthCheck(Func<IMetricsHost, CounterMetric> builderFunc,
+        public MetricsBuilder RegisterAsHealthCheck(Func<IMetricsHost, CounterMetric> builderFunc,
             Func<long, bool> checkFunc, HealthStatus onCheckFailure = HealthStatus.Unhealthy)
         {
             return RegisterAsHealthCheck(builderFunc, m => m.Count, checkFunc, onCheckFailure);
         }
 
-        public IMetricsBuilder RegisterAsHealthCheck<TMetric, TValue>(Func<IMetricsHost, TMetric> builderFunc,
+        public MetricsBuilder RegisterAsHealthCheck<TMetric, TValue>(Func<IMetricsHost, TMetric> builderFunc,
             Func<TMetric, TValue> valueFunc, Func<TValue, bool> checkFunc,
             HealthStatus onCheckFailure = HealthStatus.Unhealthy) where TMetric : IMetric
         {
